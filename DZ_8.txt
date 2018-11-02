@@ -1,0 +1,25 @@
+1. Написать метод с переменным числом параметров (...) который считает сумму введенных чисел типа int. 
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int result;
+        result = sum(5, 5);
+        System.out.println("result: " + result);
+        result = sum(6, 4, 10);
+        System.out.println("result: " + result);
+        result = sum(2, 8, 10, 20, 60);
+        System.out.println("result: " + result);
+    }
+
+
+
+    private static int sum(int... params) {
+        int result = 0;
+        for (int i = 0; i < params.length; i++) {
+            result += params[i];
+                            }
+                return result;
+    }
+        }

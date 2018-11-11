@@ -1,0 +1,170 @@
+1) Вывести матрицу заполненную случайными числами (Размеры задать константами, как переменные класса).
+Вывести матрицу на экран.
+Попросить пользователя ввести число и умножить каждый элемент матрицы на число, и вывести результат.
+2) Вывести сумму элементов матрицы случайных чисел
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[][] arr = new int[3][3];
+        Random random = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                arr[i][j] = random.nextInt(100);
+                System.out.print(arr[i][j] + "  ");
+            }
+            System.out.println();
+            }
+        System.out.println("===================");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите значение числа");
+        int count = scanner.nextInt();
+        int[][] arr2;
+        arr2 = arr;
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < arr2[i].length; j++) {
+                arr2[i][j] = arr[i][j] * count;
+
+                System.out.print(arr[i][j] + "  ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        int sum = 0;
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < arr2[i].length; j++) {
+                sum += arr2[i][j];
+            }
+        }
+        System.out.println("Сумма всех элементов матрицы = "+sum);
+
+    }
+}
+
+
+3) Задана матрица случайных чисел. Пользователь вводит число. Вывести сколько раз это число встречается в матрице
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[][] arr = new int[3][3];
+        Random random = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                arr[i][j] = random.nextInt(10);
+                System.out.print(arr[i][j] + "  ");
+            }
+            System.out.println();
+        }
+        System.out.println("===================");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите значение числа");
+        int count = scanner.nextInt();
+        int s = count;
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+
+                if (arr[i][j] == s) {
+                    sum = +arr[i][j] / s;
+                }
+            }
+        }
+        System.out.println("Количество раз встречаемых в матрице " + s);
+    }
+}
+
+4) Найти строку матрицы с максимальной суммой элементов
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[][] arr = new int[3][3];
+        Random random = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                arr[i][j] = random.nextInt(10);
+                System.out.println(arr[i][j] + "  ");
+            }
+            System.out.println();
+        }
+        System.out.println("===================");
+
+        int str = 0;
+        int num_str = 0;
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            str = 0;
+            for (int j = 0; j < arr[i].length; j++) {
+                str += arr[i][j];
+            }
+            System.out.println("Сумма " + num_str + " строки " + str);
+            if (max < str) {
+                max = str;
+            }
+            num_str++;
+        }
+        System.out.println("Максимальная сумма строки " + max);
+    }
+}
+
+6) Монета подбрасывается 3 раза. Написать программу которая выводит вероятность того что 3 раза выпала одна и та же сторона.
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int count = 100000;
+        int brosok = 0;
+        for (int i = 0; i < count; i++) {
+            int coin1 = coin();
+            int coin2 = coin();
+            int coin3 = coin();
+            if (coin1 == coin2 && coin2 == coin3) {
+                brosok++;
+            }
+        }
+        double brosok_percent = brosok / (double) count * 100;
+        System.out.println("монеты одинаковы " + brosok_percent);
+    }
+    private static int coin() {
+        Random random = new Random();
+        return random.nextInt(2);
+    }
+}
+
+
+7) Подбрасывается 3 кубика. Написать программу которая выводит вероятность того на кубиках числа идут подряд(если их отсортировать). Пример: 
+Подряд: (1,2,3) (3,4,5) (4,3,5) (3,1,2) (6,5,4)
+Не подряд: (1,1,2) (1, 2, 5) 
+
+public class Main {
+
+    public static void main(String[] args) {
+        int count = 100000;
+        int allkub = 0;
+        for (int i = 0; i < count - 1; i++) {
+            int kub1 = rolldice();
+            int kub2 = rolldice();
+            int kub3 = rolldice();
+
+            if (kub1 == kub2 && kub2 == kub3) {
+                allkub++;
+            }
+        }
+        double allkub_percent = allkub / (double) count * 100;
+
+
+        System.out.println("кубики равны " + allkub_percent);
+
+    }
+
+    private static int rolldice() {
+        Random random = new Random();
+        return random.nextInt(6) + 1;
+    }
+}
